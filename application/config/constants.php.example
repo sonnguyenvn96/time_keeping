@@ -1,0 +1,148 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/*
+|--------------------------------------------------------------------------
+| Display Debug backtrace
+|--------------------------------------------------------------------------
+|
+| If set to TRUE, a backtrace will be displayed along with php errors. If
+| error_reporting is disabled, the backtrace will not display, regardless
+| of this setting
+|
+*/
+defined('SHOW_DEBUG_BACKTRACE') OR define('SHOW_DEBUG_BACKTRACE', TRUE);
+
+/*
+|--------------------------------------------------------------------------
+| File and Directory Modes
+|--------------------------------------------------------------------------
+|
+| These prefs are used when checking and setting modes when working
+| with the file system.  The defaults are fine on servers with proper
+| security, but you may wish (or even need) to change the values in
+| certain environments (Apache running a separate process for each
+| user, PHP under CGI with Apache suEXEC, etc.).  Octal values should
+| always be used to set the mode correctly.
+|
+*/
+defined('FILE_READ_MODE')  OR define('FILE_READ_MODE', 0644);
+defined('FILE_WRITE_MODE') OR define('FILE_WRITE_MODE', 0666);
+defined('DIR_READ_MODE')   OR define('DIR_READ_MODE', 0755);
+defined('DIR_WRITE_MODE')  OR define('DIR_WRITE_MODE', 0755);
+
+/*
+|--------------------------------------------------------------------------
+| File Stream Modes
+|--------------------------------------------------------------------------
+|
+| These modes are used when working with fopen()/popen()
+|
+*/
+defined('FOPEN_READ')                           OR define('FOPEN_READ', 'rb');
+defined('FOPEN_READ_WRITE')                     OR define('FOPEN_READ_WRITE', 'r+b');
+defined('FOPEN_WRITE_CREATE_DESTRUCTIVE')       OR define('FOPEN_WRITE_CREATE_DESTRUCTIVE', 'wb'); // truncates existing file data, use with care
+defined('FOPEN_READ_WRITE_CREATE_DESTRUCTIVE')  OR define('FOPEN_READ_WRITE_CREATE_DESTRUCTIVE', 'w+b'); // truncates existing file data, use with care
+defined('FOPEN_WRITE_CREATE')                   OR define('FOPEN_WRITE_CREATE', 'ab');
+defined('FOPEN_READ_WRITE_CREATE')              OR define('FOPEN_READ_WRITE_CREATE', 'a+b');
+defined('FOPEN_WRITE_CREATE_STRICT')            OR define('FOPEN_WRITE_CREATE_STRICT', 'xb');
+defined('FOPEN_READ_WRITE_CREATE_STRICT')       OR define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
+
+/*
+|--------------------------------------------------------------------------
+| Exit Status Codes
+|--------------------------------------------------------------------------
+|
+| Used to indicate the conditions under which the script is exit()ing.
+| While there is no universal standard for error codes, there are some
+| broad conventions.  Three such conventions are mentioned below, for
+| those who wish to make use of them.  The CodeIgniter defaults were
+| chosen for the least overlap with these conventions, while still
+| leaving room for others to be defined in future versions and user
+| applications.
+|
+| The three main conventions used for determining exit status codes
+| are as follows:
+|
+|    Standard C/C++ Library (stdlibc):
+|       http://www.gnu.org/software/libc/manual/html_node/Exit-Status.html
+|       (This link also contains other GNU-specific conventions)
+|    BSD sysexits.h:
+|       http://www.gsp.com/cgi-bin/man.cgi?section=3&topic=sysexits
+|    Bash scripting:
+|       http://tldp.org/LDP/abs/html/exitcodes.html
+|
+*/
+defined('EXIT_SUCCESS')        OR define('EXIT_SUCCESS', 0); // no errors
+defined('EXIT_ERROR')          OR define('EXIT_ERROR', 1); // generic error
+defined('EXIT_CONFIG')         OR define('EXIT_CONFIG', 3); // configuration error
+defined('EXIT_UNKNOWN_FILE')   OR define('EXIT_UNKNOWN_FILE', 4); // file not found
+defined('EXIT_UNKNOWN_CLASS')  OR define('EXIT_UNKNOWN_CLASS', 5); // unknown class
+defined('EXIT_UNKNOWN_METHOD') OR define('EXIT_UNKNOWN_METHOD', 6); // unknown class member
+defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user input
+defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
+defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
+defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+//===============================================================================================================================================
+// EMAIL GATEWAY NETFIN 
+defined('SMTP_API_END_POINT')           OR define('SMTP_API_END_POINT', 'https://api.mailgun.net/v3/mg.netfin.vn/messages');
+defined('SMTP_API_AUTH')                OR define('SMTP_API_AUTH', 'YXBpOjBjM2RjZDVkYWY3NTA4MGEwMWU0OGNlYzkzYmY5NmE5LTJkMjczMTJjLTFkOTI4YzE5');
+defined('SMTP_HOST')                    OR define('SMTP_HOST', 'smtp.mailgun.org');
+defined('SMTP_SECURE')                  OR define('SMTP_SECURE', 'tls');
+defined('SMTP_PORT')                    OR define('SMTP_PORT', 587);
+defined('SMTP_USERNAME')                OR define('SMTP_USERNAME', 'vnd@mg.netfin.vn');
+defined('SMTP_PASSWORD')                OR define('SMTP_PASSWORD', '1fa7adee1918757ed5b7f54d6e5a6fae-46ac6b00-c54373d4');
+defined('SMTP_FROM_ADDRESS')            OR define('SMTP_FROM_ADDRESS', 'vnd@mg.netfin.vn');
+defined('SMTP_REPLY_TO')                OR define('SMTP_REPLY_TO', 'vnd@mg.netfin.vn');
+
+// SMS GATEWAY NETFIN
+defined('SMS_END_POINT')                OR define('SMS_END_POINT', 'http://rest.esms.vn/MainService.svc/json/SendMultipleMessage_V4_get');
+defined('SMS_API_KEY')                  OR define('SMS_API_KEY', 'A3C2500E81FBED0F476458CC074913');
+defined('SMS_SECRET_KEY')               OR define('SMS_SECRET_KEY', '89025FC6614E19A0C5CC9D439EDC56');
+defined('SMS_BRANDNAME')                OR define('SMS_BRANDNAME', 'LIAN%20VASS');
+defined('SMS_TYPE')                     OR define('SMS_TYPE', 2);
+defined('SMS_RESULT_CODE')              OR define('SMS_RESULT_CODE', 'CodeResult');
+defined('SMS_RESULT_SUCCESS')           OR define('SMS_RESULT_SUCCESS', 100);
+
+//===============================================================================================================================================
+
+// SMS GATEWAY VNDIRECT
+defined('SMS_END_POINT_VNDS')           OR define('SMS_END_POINT_VNDS', 'https://dcom-gw-uat.vndirect.com.vn/sms/push');
+defined('SMS_XPARTNERNAME_VNDS')        OR define('SMS_XPARTNERNAME_VNDS', 'IVND-COM');
+defined('SMS_XPARTNERCODE_VNDS')        OR define('SMS_XPARTNERCODE_VNDS', '0123456789');
+defined('SMS_BRANDNAME_VNDS')           OR define('SMS_BRANDNAME_VNDS', 'VNDS');
+defined('SMS_PROVIDER_VNDS')            OR define('SMS_PROVIDER_VNDS', 'vndirect');
+defined('SMS_MODULE_VNDS')              OR define('SMS_MODULE_VNDS', 'module');
+
+// EMAIL GATEWAY VNDIRECT
+defined('EMAIL_END_POINT_VNDS')         OR define('EMAIL_END_POINT_VNDS', 'https://dcom-gw-uat.vndirect.com.vn/email');
+defined('EMAIL_XPARTNERNAME_VNDS')      OR define('EMAIL_XPARTNERNAME_VNDS', 'IVND-COM');
+defined('EMAIL_XPARTNERCODE_VNDS')      OR define('EMAIL_XPARTNERCODE_VNDS', '0123456789');
+defined('EMAIL_SENDER_VNDS')            OR define('EMAIL_SENDER_VNDS', 'support@vndirect.com.vn');
+defined('EMAIL_SENDERNAME_VNDS')        OR define('EMAIL_SENDERNAME_VNDS', 'VNDirect');
+defined('EMAIL_MODULE_VNDS')            OR define('EMAIL_MODULE_VNDS', 'module');
+defined('EMAIL_SERVICE_VNDS')           OR define('EMAIL_SERVICE_VNDS', 'mail_elastic');
+
+//===============================================================================================================================================
+// GATEWAY_TYPE
+// VNDIRECT: SẼ SỬ DỤNG HÀM GỬI VNDIRECT, NETFIN: SẼ SỬ DỤNG HÀM GỬI CỦA NETFIN
+defined('GATEWAY_TYPE')                 OR define('GATEWAY_TYPE', 'NETFIN');
+defined('SEND_MAIL_INVITE')             OR define('SEND_MAIL_INVITE', true); // đổi giá trị thành false nếu không muốn hệ thống tự động gửi email mời họp và email thông tin cuộc họp
+defined('JOB_WORKER')                   OR define('JOB_WORKER', 20);
+
+#google cloud storage
+defined('GOOGLE_STORAGE_FILE_CERT') OR define('GOOGLE_STORAGE_FILE_CERT', '/var/www/html/cert/sanvaybds-dev.json'); // google cloud
+defined('GOOGLE_STORAGE_BUCKET_NAME') OR define('GOOGLE_STORAGE_BUCKET_NAME', 'sanvaybds-dev'); // bucket name
+defined('BASE_URL_IMAGE_GOOGLE_STORAGE') OR define('BASE_URL_IMAGE_GOOGLE_STORAGE', 'http://storage.googleapis.com/sanvaybds-dev'); // link ảnh trên google storage
+defined('URL_PAYMENT') OR define('URL_PAYMENT', 'https://payment-dev.vinalife.vn/'); // payment url payment
+defined('SECRET_PAYMENT') OR define('SECRET_PAYMENT', '8d4646eb2d7067126eb08adb0672f7bb');
+defined('ACCESS_PAYMENT') OR define('ACCESS_PAYMENT', '23024ff6dd6b53be');
+defined('BASE_URL_CTV') OR define('BASE_URL_CTV', 'http://ctv.vinalife.vn/');
+defined('OPEN_API_VNE') OR define('OPEN_API_VNE', 'http://open-api.vinalife.vn');
+defined('SOURCE_INSURANCE') OR define('SOURCE_INSURANCE', 'TNDS');
+defined('BASE_URL_TNDS') OR define('BASE_URL_TNDS', 'https://tnds.vinalife.vn/');
+//ocb
+defined('BASE_URL_API_OCB') OR define('BASE_URL_API_OCB', 'https://prepro.m-ocb.com.vn:8889');
+defined('USERNAME_OCB') OR define('USERNAME_OCB', 'vinalife_test');
+defined('PASSWORD_OCB') OR define('PASSWORD_OCB', 'Abc@1234!');
