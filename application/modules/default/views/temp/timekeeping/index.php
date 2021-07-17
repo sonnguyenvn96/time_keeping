@@ -24,7 +24,7 @@
         </thead>
         <tbody>
         <tr>
-            <td><input class="form-control" type="text" placeholder="Họ tên"></td>
+            <td><input class="form-control" type="text" placeholder="Họ tên" id="full_name"></td>
             <td><input class="form-control" type="text" placeholder="Mã nhân viên" id="staff_id"></td>
             <td width="35%">
                 <div class="input-group" id="nv">
@@ -39,7 +39,7 @@
 <!--                    </span>-->
                 </div>
             </td>
-            <td><button type="button" class="btn btn-primary">Xoá</button></td>
+            <td><button type="button" class="btn btn-primary _delete">Xoá</button></td>
         </tr>
 
         </tbody>
@@ -86,10 +86,21 @@
         })
 
         $(this).on('click','._set',function (){
-            $("#nv").append('<span style="margin:0 5px 5px 0" class="badge bg-dark">\n' +
-                '                        02/02/2022 13:20\n' +
-                '<button type="button" class="btn btn-sm btn-danger">Xoá</button>\n'+
+            $("#checkin").remove();
+            $("#nv").append('<span id="checkin" style="margin:0 5px 5px 0" class="badge bg-dark">\n' +
+                $('#checkin_date').val() + ' ' + $('#checkin_time').val() +
+                '<button type="button" class="btn btn-sm btn-danger _clear">Xoá</button>\n'+
                 '                    </span>')
+        })
+
+        $(this).on('click','._clear',function (){
+            $("#checkin").remove();
+        })
+
+        $(this).on('click','._delete',function (){
+            $("#checkin").remove();
+            $("#full_name").val("");
+            $("#staff_id").val("");
         })
 
         $('#submit').on('click', function () {

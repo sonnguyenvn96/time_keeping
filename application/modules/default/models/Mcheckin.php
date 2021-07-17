@@ -33,5 +33,21 @@ class Mcheckin extends MY_Model
         ])->where($cond)->update($this->collection);
         return $update;
     }
+
+    public function findCheckin($staffId, $timeCheckin)
+    {
+        $pipeline = [
+            [
+                '$match' => [
+                    'staff_id' => $staffId,
+                    'time_checkin' => [
+                        '$gt' => new \MongoDB\BSON\UTCDateTime(strtotime($timeCheckin . ' 00:00:00') * 1000),
+                        '$lte' => new \MongoDB\BSON\UTCDateTime(strtotime($timeCheckin . ' 23:59:59') * 1000),
+                    ],
+                ],
+            ],
+        ];
+        return $this->mongo_db->aggregate($this->collection, $pipeline);
+    }
 }
 
